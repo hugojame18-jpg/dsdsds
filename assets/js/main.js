@@ -160,7 +160,26 @@
   majOffre();
   window.setInterval(majOffre, 60000);
 
-  /* Révélation douce des sections au défilement. */
+  /* Force la lecture des vidéos (autoplay bloqué sur certains mobiles). */
+  var videos = document.querySelectorAll("video[autoplay]");
+  Array.prototype.forEach.call(videos, function (v) {
+    v.muted = true;
+    var p = v.play();
+    if (p !== undefined) {
+      p.catch(function () {
+        /* Si le navigateur refuse encore, on relance au premier scroll. */
+        var relancer = function () {
+          v.play();
+          window.removeEventListener("scroll", relancer);
+          window.removeEventListener("touchstart", relancer);
+        };
+        window.addEventListener("scroll", relancer, { passive: true });
+        window.addEventListener("touchstart", relancer, { passive: true });
+      });
+    }
+  });
+
+/* Révélation douce des sections au défilement. */
   if ("IntersectionObserver" in window) {
     var observateur = new IntersectionObserver(function (entrees) {
       entrees.forEach(function (entree) {
