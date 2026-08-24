@@ -22,7 +22,9 @@ cape-moka.html          fiche produit — moka
 cape-ivoire.html        fiche produit — crème
 cape-noir.html          fiche produit — noir
 assets/css/style.css    palette, typographie, mise en page
-assets/video/           les vidéos de l'ouverture
+assets/video/originaux/ les vidéos telles que reçues
+assets/video/           les vidéos compressées et leur image d'attente
+compresser.py           fabrique tout ce qui précède depuis originaux/
 assets/js/main.js       total et envoi de la commande, pour chaque formulaire
 assets/img/             les photos produit — cape-<coloris>[-n].webp
 build_artifact.py       génère boutique-en-un-fichier.html (tout le site inliné)
@@ -104,6 +106,22 @@ Une fois la date passée, le bandeau bascule tout seul sur « Livraison offerte 
 les commandes » et le décompte disparaît. **Mettez cette date à jour à chaque nouvelle
 opération** : un décompte qui se remet à zéro tout seul est une pratique commerciale
 trompeuse.
+
+## Poids des médias
+
+Les fichiers servis ne sont jamais les originaux. `compresser.py` produit, depuis
+`assets/*/originaux/` :
+
+- deux largeurs par photo (640 et 1080 px) en WebP, que les pages déclarent en `srcset` ;
+- une vidéo en 540 px de large, sans piste audio, et son image d'attente.
+
+```bash
+pip install pillow imageio-ffmpeg
+python3 compresser.py
+```
+
+À relancer après chaque photo ou vidéo ajoutée dans `originaux/`. Les 11 photos et les
+2 vidéos passent ainsi de 12 Mo à 4 Mo, et un téléphone ne charge que les versions 640.
 
 ## Commandes et paiement
 

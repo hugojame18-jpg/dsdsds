@@ -104,7 +104,10 @@
 
     Array.prototype.forEach.call(vignettes, function (vignette) {
       vignette.addEventListener("click", function () {
-        vue.src = source(vignette.dataset.src);
+        /* La vue principale prend la grande version : à cette taille
+           d'affichage, c'est celle que le srcset aurait choisie. */
+        vue.removeAttribute("srcset");
+        vue.src = source(vignette.dataset.base + "-1080.webp");
         vue.alt = vignette.dataset.alt;
         vue.style.objectPosition = vignette.dataset.position || "";
         legende.textContent = vignette.dataset.legende;

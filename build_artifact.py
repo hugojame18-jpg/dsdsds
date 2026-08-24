@@ -98,16 +98,20 @@ def construire() -> str:
         if image.suffix.lower() in TYPES:
             chemin = f"assets/img/{image.name}"
             banque[chemin] = data_uri(image)
-            # L'espace évite de mordre sur data-src="…" des vignettes de galerie.
             document = document.replace(f' src="{chemin}"', f' data-image="{chemin}"')
+
+    # Le fichier unique n'embarque qu'une largeur : le srcset n'a plus lieu d'être.
+    document = re.sub(r'\s+(?:srcset|sizes)="[^"]*"', "", document)
 
     # Les vidéos n'apparaissent qu'une fois : elles vont directement dans le src.
     dossier_video = RACINE / "assets/video"
     if dossier_video.is_dir():
         for video in sorted(dossier_video.iterdir()):
-            if video.suffix.lower() in TYPES:
-                document = document.replace(f' src="assets/video/{video.name}"',
-                                            f' src="{data_uri(video)}"')
+            if video.suffix.lower() not in TYPES:
+                continue
+            attribut = "poster" if video.suffix.lower() == ".webp" else "src"
+            document = document.replace(f' {attribut}="assets/video/{video.name}"',
+                                        f' {attribut}="{data_uri(video)}"')
 
     entrees = ",\n".join(f'  "{nom}": "{uri}"' for nom, uri in banque.items())
     document = document.replace(
