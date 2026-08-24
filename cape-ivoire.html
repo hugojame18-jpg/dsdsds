@@ -33,10 +33,18 @@
 
 <main class="produit">
 
-  <figure class="produit__visuel">
-    <img src="assets/img/cape-ivoire.webp" alt="Cape en fausse fourrure coloris crème, portée avec un col roulé" width="1296" height="1728">
-    <figcaption class="produit__legende">Le mannequin mesure 1,65 m et porte la taille S</figcaption>
-  </figure>
+  <div class="galerie">
+    <figure class="galerie__vue">
+      <img data-role="vue" src="assets/img/cape-ivoire.webp" alt="Cape en fausse fourrure coloris crème, portée fermée sur un col roulé" width="1296" height="1728">
+      <figcaption class="produit__legende" data-role="legende">Le mannequin mesure 1,65 m et porte la taille S</figcaption>
+    </figure>
+    <ul class="galerie__vignettes">
+      <li><button type="button" class="galerie__vignette" aria-current="true" data-src="assets/img/cape-ivoire.webp" data-alt="Cape en fausse fourrure coloris crème, portée fermée sur un col roulé" data-legende="Le mannequin mesure 1,65 m et porte la taille S"><img src="assets/img/cape-ivoire.webp" alt="Vue 1" loading="lazy" width="1296" height="1728"></button></li>
+      <li><button type="button" class="galerie__vignette" data-src="assets/img/cape-ivoire-3.webp" data-alt="Cape crème portée ouverte sur les épaules, vue de trois quarts" data-legende="Portée ouverte sur les épaules"><img src="assets/img/cape-ivoire-3.webp" alt="Vue 2" loading="lazy" width="720" height="960"></button></li>
+      <li><button type="button" class="galerie__vignette" data-src="assets/img/cape-ivoire-2.webp" data-alt="Dos de la cape crème, ampleur des manches et rangs de fausse fourrure" data-legende="Le dos : l'ampleur des manches et les rangs de fourrure"><img src="assets/img/cape-ivoire-2.webp" alt="Vue 3" loading="lazy" width="1296" height="1728"></button></li>
+      <li><button type="button" class="galerie__vignette" data-src="assets/img/cape-ivoire-4.webp" data-alt="Cape crème vue de dos dans un miroir, ourlet bordé de pompons de fourrure" data-legende="Le tombé dans le dos et l'ourlet"><img src="assets/img/cape-ivoire-4.webp" alt="Vue 4" loading="lazy" width="1296" height="1728"></button></li>
+    </ul>
+  </div>
 
   <div class="produit__infos">
     <h1>Cape en fausse fourrure — Crème</h1>

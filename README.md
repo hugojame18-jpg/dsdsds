@@ -24,7 +24,7 @@ cape-noir.html          fiche produit — noir
 assets/css/style.css    palette, typographie, mise en page
 assets/video/           les vidéos de l'ouverture
 assets/js/main.js       total et envoi de la commande, pour chaque formulaire
-assets/img/             les trois photos produit
+assets/img/             les photos produit — cape-<coloris>[-n].webp
 build_artifact.py       génère boutique-en-un-fichier.html (tout le site inliné)
 ```
 
@@ -37,7 +37,7 @@ prix), la présentation de la pièce, les garanties et l'aide.
 Quand le nombre d'articles laisse une case vide en bas de la grille sur téléphone, la
 dernière vignette occupe toute la largeur — pas de trou.
 
-Une fiche produit reprend la photo, le prix, le choix du coloris et de la taille, la
+Une fiche produit reprend la galerie photo, le prix, le choix du coloris et de la taille, la
 quantité et le total, puis le descriptif : texte de présentation, indice de chaleur,
 mensurations du mannequin, matière, dimensions, guide des tailles et volet livraison.
 
@@ -70,6 +70,23 @@ Elles sont écrites en clair dans les fiches, à un seul endroit par page :
 
 Les délais annoncés (expédition sous 48 h, retour sous 14 jours) sont des valeurs de départ :
 vérifiez qu'elles correspondent à ce que vous pratiquez avant de publier.
+
+## Ajouter des photos à un produit
+
+Déposez le fichier dans `assets/img/` puis, dans la fiche du coloris, ajoutez une vignette
+à la liste `.galerie__vignettes` :
+
+```html
+<li><button type="button" class="galerie__vignette"
+    data-src="assets/img/cape-ivoire-5.webp"
+    data-alt="Description de la photo"
+    data-legende="Légende affichée sous la vue"><img
+    src="assets/img/cape-ivoire-5.webp" alt="Vue 5" loading="lazy"
+    width="1296" height="1728"></button></li>
+```
+
+La première vignette porte `aria-current="true"` : c'est la vue affichée à l'ouverture.
+Quand un coloris n'a qu'une seule photo, la liste de vignettes est simplement absente.
 
 ## L'offre de livraison offerte
 

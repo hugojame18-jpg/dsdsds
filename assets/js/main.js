@@ -90,6 +90,32 @@
     Array.prototype.forEach.call(document.querySelectorAll(selecteur), action);
   }
 
+  /* En un seul fichier, les photos sont encodées dans window.IMAGES ;
+     sur le site normal, le chemin est utilisé tel quel. */
+  function source(chemin) {
+    return (window.IMAGES && window.IMAGES[chemin]) || chemin;
+  }
+
+  /* Galerie : les vignettes changent la vue principale. */
+  chaque(".galerie", function (galerie) {
+    var vue = galerie.querySelector('[data-role="vue"]');
+    var legende = galerie.querySelector('[data-role="legende"]');
+    var vignettes = galerie.querySelectorAll(".galerie__vignette");
+
+    Array.prototype.forEach.call(vignettes, function (vignette) {
+      vignette.addEventListener("click", function () {
+        vue.src = source(vignette.dataset.src);
+        vue.alt = vignette.dataset.alt;
+        legende.textContent = vignette.dataset.legende;
+
+        Array.prototype.forEach.call(vignettes, function (autre) {
+          autre.removeAttribute("aria-current");
+        });
+        vignette.setAttribute("aria-current", "true");
+      });
+    });
+  });
+
   /* Le lien « Guide des tailles » déplie le volet correspondant. */
   chaque(".tailles__guide", function (lien) {
     lien.addEventListener("click", function () {

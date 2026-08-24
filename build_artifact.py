@@ -96,15 +96,18 @@ def construire() -> str:
     banque = {}
     for image in sorted((RACINE / "assets/img").iterdir()):
         if image.suffix.lower() in TYPES:
-            banque[image.name] = data_uri(image)
-            document = document.replace(f'src="assets/img/{image.name}"', f'data-image="{image.name}"')
+            chemin = f"assets/img/{image.name}"
+            banque[chemin] = data_uri(image)
+            # L'espace évite de mordre sur data-src="…" des vignettes de galerie.
+            document = document.replace(f' src="{chemin}"', f' data-image="{chemin}"')
 
     # Les vidéos n'apparaissent qu'une fois : elles vont directement dans le src.
     dossier_video = RACINE / "assets/video"
     if dossier_video.is_dir():
         for video in sorted(dossier_video.iterdir()):
             if video.suffix.lower() in TYPES:
-                document = document.replace(f"assets/video/{video.name}", data_uri(video))
+                document = document.replace(f' src="assets/video/{video.name}"',
+                                            f' src="{data_uri(video)}"')
 
     entrees = ",\n".join(f'  "{nom}": "{uri}"' for nom, uri in banque.items())
     document = document.replace(
@@ -116,7 +119,7 @@ def construire() -> str:
         1,
     )
 
-    reste = re.findall(r'(?:src|href)="(?:assets/|[a-z-]+\.html)[^"]*"', document)
+    reste = re.findall(r'(?:^|[^-])(?:src|href)="(?:assets/|[a-z-]+\.html)[^"]*"', document)
     if reste:
         raise SystemExit(f"Références non inlinées : {sorted(set(reste))}")
 
