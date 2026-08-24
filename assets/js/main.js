@@ -106,6 +106,7 @@
       vignette.addEventListener("click", function () {
         vue.src = source(vignette.dataset.src);
         vue.alt = vignette.dataset.alt;
+        vue.style.objectPosition = vignette.dataset.position || "";
         legende.textContent = vignette.dataset.legende;
 
         Array.prototype.forEach.call(vignettes, function (autre) {

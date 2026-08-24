@@ -88,6 +88,9 @@ Déposez le fichier dans `assets/img/` puis, dans la fiche du coloris, ajoutez u
 La première vignette porte `aria-current="true"` : c'est la vue affichée à l'ouverture.
 Quand un coloris n'a qu'une seule photo, la liste de vignettes est simplement absente.
 
+Pour une photo dont le cadrage 3/4 coupe mal — une image en 2/3, par exemple — ajoutez
+`data-position="center 62%"` sur le bouton : la vue principale reprend ce cadrage au clic.
+
 ## L'offre de livraison offerte
 
 Le bandeau du haut affiche « Livraison offerte pendant une semaine » suivi du temps
