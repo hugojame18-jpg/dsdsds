@@ -37,9 +37,12 @@ prix), la présentation de la pièce, les garanties et l'aide.
 Quand le nombre d'articles laisse une case vide en bas de la grille sur téléphone, la
 dernière vignette occupe toute la largeur — pas de trou.
 
-Une fiche produit reprend la photo, le prix, le sélecteur de coloris, le formulaire de
-commande pré-réglé, puis le descriptif : texte de présentation, indice de chaleur,
-mensurations du mannequin, matière, tailles, longueurs et volet livraison.
+Une fiche produit reprend la photo, le prix, le choix du coloris et de la taille, la
+quantité et le total, puis le descriptif : texte de présentation, indice de chaleur,
+mensurations du mannequin, matière, dimensions, guide des tailles et volet livraison.
+
+Aucune coordonnée n'est demandée sur le site : le bouton « Commander » mène à la page de
+paiement, qui recueille le nom, l'adresse et le règlement.
 
 ### Caractéristiques du produit
 
@@ -48,12 +51,12 @@ Elles sont écrites en clair dans les fiches, à un seul endroit par page :
 | | |
 | --- | --- |
 | Matière | 100 % polyester |
-| Taille | Unique, convient du 34 au 44 |
+| Tailles | S (34/36), M (38/40), L (42/44) |
 | Longueur | 78 cm devant, 83 cm dos |
 | Fermeture | Agrafe et œillet sur le devant |
 | Coupe | Manches chauve-souris |
 | Indice de chaleur | 2/5 — mi-saison |
-| Mannequin | 1,65 m, taille 34/36, porte la taille unique |
+| Mannequin | 1,65 m, taille 34/36, porte la taille S |
 
 ## À personnaliser avant la mise en ligne
 
@@ -82,16 +85,25 @@ les commandes » et le décompte disparaît. **Mettez cette date à jour à chaq
 opération** : un décompte qui se remet à zéro tout seul est une pratique commerciale
 trompeuse.
 
-## Commandes
+## Commandes et paiement
 
-Le formulaire ne stocke rien : il compose un e-mail prérempli avec le coloris, la quantité,
-l'adresse et le total. Si la messagerie ne s'ouvre pas, un récapitulatif copiable s'affiche
-sous le bouton.
+Le site ne demande ni nom, ni adresse, ni e-mail : la cliente choisit son coloris, sa
+taille et sa quantité, puis « Commander » l'envoie sur la page de paiement, qui se charge
+des coordonnées et du règlement.
 
-Pour encaisser en ligne, deux options simples :
+Collez vos liens de paiement (Stripe, SumUp, PayPal…) dans `assets/js/main.js` :
 
-- un lien de paiement Stripe / SumUp / PayPal envoyé en réponse à la commande (fonctionnement actuel) ;
-- un bouton de paiement à coller à la place du formulaire, si vous préférez le paiement immédiat.
+```js
+var PAIEMENT = {
+  "Moka": "https://buy.stripe.com/...",
+  "Crème": "",
+  "Noir": ""
+};
+```
+
+Tant qu'un lien est vide, le bouton bascule sur un e-mail de commande prérempli avec le
+coloris, la taille et la quantité — de quoi vendre dès aujourd'hui, en renvoyant le lien
+de paiement à la main.
 
 ## Mise en ligne (GitHub Pages)
 

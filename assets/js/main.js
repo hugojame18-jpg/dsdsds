@@ -7,6 +7,15 @@
   var PRIX = 20;
   var EMAIL = "contact@maison-ivoire.fr";
 
+  /* Liens de paiement, un par coloris (Stripe, SumUp, PayPal…).
+     C'est la page de paiement qui recueille les coordonnées et l'adresse.
+     Tant qu'un lien est vide, le bouton prépare un e-mail de commande. */
+  var PAIEMENT = {
+    "Moka": "",
+    "Crème": "",
+    "Noir": ""
+  };
+
   /* Fin de l'offre de livraison offerte. Passée cette date, le bandeau
      annonce simplement la livraison offerte, sans compte à rebours.
      À mettre à jour à chaque nouvelle opération. */
@@ -14,27 +23,14 @@
 
   var euros = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
-  function valeur(form, nom) {
-    var champ = form.elements[nom];
-    return champ ? champ.value.trim() : "";
-  }
-
   function resume(donnees) {
     return [
       "Commande — La cape Maison Ivoire",
       "",
       "Coloris : " + donnees.coloris,
+      "Taille : " + donnees.taille,
       "Quantité : " + donnees.quantite,
-      "Total : " + euros.format(donnees.quantite * PRIX) + " (livraison offerte)",
-      "",
-      "Nom : " + donnees.nom,
-      "E-mail : " + donnees.email,
-      "Téléphone : " + (donnees.telephone || "—"),
-      "",
-      "Adresse de livraison :",
-      donnees.adresse,
-      "",
-      "Message : " + (donnees.message || "—")
+      "Total : " + euros.format(donnees.quantite * PRIX) + " (livraison offerte)"
     ].join("\n");
   }
 
@@ -65,19 +61,23 @@
 
       var donnees = {
         coloris: form.elements.coloris.value,
-        quantite: nombre(),
-        nom: valeur(form, "nom"),
-        email: valeur(form, "email"),
-        telephone: valeur(form, "telephone"),
-        adresse: valeur(form, "adresse"),
-        message: valeur(form, "message")
+        taille: form.elements.taille ? form.elements.taille.value : "unique",
+        quantite: nombre()
       };
+
+      var lien = PAIEMENT[donnees.coloris];
+      if (lien) {
+        /* La page de paiement prend le relais : coordonnées, adresse, règlement. */
+        window.location.href = lien;
+        return;
+      }
 
       var texte = resume(donnees);
       recapTexte.value = texte;
       recap.hidden = false;
 
-      var sujet = "Commande — cape " + donnees.coloris + " ×" + donnees.quantite;
+      var sujet = "Commande — cape " + donnees.coloris + " " + donnees.taille +
+        " ×" + donnees.quantite;
       window.location.href = "mailto:" + EMAIL +
         "?subject=" + encodeURIComponent(sujet) +
         "&body=" + encodeURIComponent(texte);
@@ -86,10 +86,19 @@
 
   Array.prototype.forEach.call(document.querySelectorAll(".formulaire"), activer);
 
-  /* Bandeau : temps restant sur l'offre de livraison. */
   function chaque(selecteur, action) {
     Array.prototype.forEach.call(document.querySelectorAll(selecteur), action);
   }
+
+  /* Le lien « Guide des tailles » déplie le volet correspondant. */
+  chaque(".tailles__guide", function (lien) {
+    lien.addEventListener("click", function () {
+      var volet = document.getElementById(lien.getAttribute("href").slice(1));
+      if (volet) { volet.open = true; }
+    });
+  });
+
+  /* Bandeau : temps restant sur l'offre de livraison. */
 
   function majOffre() {
     var reste = FIN_OFFRE.getTime() - Date.now();

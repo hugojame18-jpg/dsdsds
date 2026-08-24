@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cape en fausse fourrure — Crème | Maison Ivoire</title>
-<meta name="description" content="Cape en fausse fourrure coloris crème, coupe chauve-souris, taille unique du 34 au 44. 20 € — livraison offerte.">
+<meta name="description" content="Cape en fausse fourrure coloris crème, coupe chauve-souris, tailles S à L. 20 € — livraison offerte.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap">
@@ -35,7 +35,7 @@
 
   <figure class="produit__visuel">
     <img src="assets/img/cape-ivoire.webp" alt="Cape en fausse fourrure coloris crème, portée avec un col roulé" width="1296" height="1728">
-    <figcaption class="produit__legende">Le mannequin mesure 1,65 m et porte la taille unique</figcaption>
+    <figcaption class="produit__legende">Le mannequin mesure 1,65 m et porte la taille S</figcaption>
   </figure>
 
   <div class="produit__infos">
@@ -57,34 +57,19 @@
     <form class="formulaire" id="formulaire">
       <input type="hidden" name="coloris" value="Crème">
 
+      <fieldset class="tailles">
+        <legend>Taille</legend>
+        <div class="tailles__liste">
+          <label class="taille"><input type="radio" name="taille" value="S" checked><span>S</span><small>34/36</small></label>
+          <label class="taille"><input type="radio" name="taille" value="M"><span>M</span><small>38/40</small></label>
+          <label class="taille"><input type="radio" name="taille" value="L"><span>L</span><small>42/44</small></label>
+        </div>
+        <a class="tailles__guide" href="#guide">Guide des tailles</a>
+      </fieldset>
+
       <div class="champ champ--court">
         <label for="quantite">Quantité</label>
         <input type="number" id="quantite" name="quantite" min="1" max="10" value="1" inputmode="numeric">
-      </div>
-
-      <div class="champ">
-        <label for="nom">Nom et prénom</label>
-        <input type="text" id="nom" name="nom" autocomplete="name" required>
-      </div>
-
-      <div class="champ">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" autocomplete="email" required>
-      </div>
-
-      <div class="champ">
-        <label for="telephone">Téléphone</label>
-        <input type="tel" id="telephone" name="telephone" autocomplete="tel">
-      </div>
-
-      <div class="champ champ--large">
-        <label for="adresse">Adresse de livraison</label>
-        <textarea id="adresse" name="adresse" rows="3" autocomplete="street-address" required></textarea>
-      </div>
-
-      <div class="champ champ--large">
-        <label for="message">Message <span class="option">(facultatif)</span></label>
-        <textarea id="message" name="message" rows="2"></textarea>
       </div>
 
       <div class="total">
@@ -94,10 +79,10 @@
       </div>
 
       <button class="bouton bouton--plein" type="submit" id="commander">Commander</button>
-      <p class="mention">Si votre messagerie ne s'ouvre pas, le récapitulatif s'affiche ci-dessous : copiez-le et envoyez-le à <a href="mailto:contact@maison-ivoire.fr">contact@maison-ivoire.fr</a>.</p>
+      <p class="mention">Vos coordonnées et votre adresse de livraison sont demandées à l'étape suivante, sur la page de paiement sécurisée.</p>
       <div class="recap" data-role="recap" hidden>
         <label for="recap-texte">Récapitulatif à copier</label>
-        <textarea id="recap-texte" data-role="recap-texte" rows="10" readonly></textarea>
+        <textarea id="recap-texte" data-role="recap-texte" rows="6" readonly></textarea>
       </div>
     </form>
 
@@ -110,17 +95,33 @@
       </p>
 
       <ul class="points">
-        <li>Le mannequin porte la taille unique</li>
-        <li>Le mannequin mesure 1,65&nbsp;m et fait du 34/36</li>
+        <li>Le mannequin mesure 1,65&nbsp;m, fait du 34/36 et porte la taille S</li>
+        <li>Coupe ample : la cape se porte aussi une taille en dessous</li>
         <li>Matière — 100&nbsp;% polyester</li>
       </ul>
 
       <dl class="fiche">
-        <div><dt>Tailles</dt><dd>Convient du 34 au 44</dd></div>
+        <div><dt>Tailles</dt><dd>S, M et L — du 34 au 44</dd></div>
         <div><dt>Longueur</dt><dd>78&nbsp;cm devant, 83&nbsp;cm dos</dd></div>
         <div><dt>Fermeture</dt><dd>Agrafe et œillet sur le devant</dd></div>
         <div><dt>Entretien</dt><dd>Nettoyage à sec. Ne pas essorer, ne pas repasser la fourrure</dd></div>
       </dl>
+
+      <details class="repli" id="guide">
+        <summary>Guide des tailles</summary>
+        <table class="tableau">
+          <caption>Correspondance des tailles</caption>
+          <thead>
+            <tr><th scope="col">Taille</th><th scope="col">France</th><th scope="col">Royaume-Uni</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">S</th><td>34 – 36</td><td>6 – 8</td></tr>
+            <tr><th scope="row">M</th><td>38 – 40</td><td>10 – 12</td></tr>
+            <tr><th scope="row">L</th><td>42 – 44</td><td>14 – 16</td></tr>
+          </tbody>
+        </table>
+        <p>La coupe est ample et se ferme par une agrafe : entre deux tailles, prenez la plus petite.</p>
+      </details>
 
       <details class="repli">
         <summary>Livraison et retours</summary>
