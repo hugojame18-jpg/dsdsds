@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Ivoire — La Cape</title>
+<meta name="description" content="La cape d'hiver en maille et fourrure douce. Trois coloris, taille unique, 20 € — livraison offerte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="bandeau">
+  <p>Livraison offerte sur toutes les commandes · Expédition sous 48&nbsp;h</p>
+</div>
+
+<header class="entete">
+  <a class="marque" href="#haut">Maison&nbsp;Ivoire</a>
+  <nav class="nav">
+    <a href="#coloris">Coloris</a>
+    <a href="#matiere">La pièce</a>
+    <a href="#commander">Commander</a>
+  </nav>
+</header>
+
+<main id="haut">
+
+  <section class="hero">
+    <div class="hero__texte">
+      <p class="surtitre">Collection automne · hiver</p>
+      <h1>La cape<br><em>bordée de fourrure</em></h1>
+      <p class="chapo">Une seule pièce, pensée pour tout l'hiver. Maille souple, fourrure synthétique dense, tombé ample qui se porte sur une robe comme sur un jean.</p>
+      <p class="prix-hero"><span class="prix">20&nbsp;€</span><span class="prix-note">Livraison offerte</span></p>
+      <a class="bouton" href="#commander">Commander</a>
+      <ul class="hero__points">
+        <li>Taille unique — du 34 au 44</li>
+        <li>Trois coloris : moka, ivoire, noir</li>
+        <li>Fourrure synthétique, sans matière animale</li>
+      </ul>
+    </div>
+    <figure class="hero__image">
+      <img src="assets/img/cape-moka.webp" alt="Cape moka bordée de fourrure, portée sur des bottes hautes en daim" width="1296" height="1728">
+    </figure>
+  </section>
+
+  <section class="coloris" id="coloris">
+    <div class="section-tete">
+      <p class="surtitre">Le choix</p>
+      <h2>Trois coloris, un seul prix</h2>
+    </div>
+    <div class="grille">
+      <article class="carte">
+        <figure><img src="assets/img/cape-moka.webp" alt="Cape moka portée dans la rue" loading="lazy" width="1296" height="1728"></figure>
+        <div class="carte__pied">
+          <h3>Moka</h3>
+          <p class="carte__desc">Le brun chaud, le plus facile à porter.</p>
+          <p class="carte__prix">20&nbsp;€</p>
+          <a class="bouton bouton--fin" href="#commander" data-coloris="Moka">Choisir le moka</a>
+        </div>
+      </article>
+      <article class="carte">
+        <figure><img src="assets/img/cape-ivoire.webp" alt="Cape ivoire portée avec un col roulé et des mocassins" loading="lazy" width="1296" height="1728"></figure>
+        <div class="carte__pied">
+          <h3>Ivoire</h3>
+          <p class="carte__desc">Le blanc cassé, lumineux, très habillé.</p>
+          <p class="carte__prix">20&nbsp;€</p>
+          <a class="bouton bouton--fin" href="#commander" data-coloris="Ivoire">Choisir l'ivoire</a>
+        </div>
+      </article>
+      <article class="carte">
+        <figure><img src="assets/img/cape-noir.jpg" alt="Cape noire portée avec des bottes hautes" loading="lazy" width="1296" height="1728"></figure>
+        <div class="carte__pied">
+          <h3>Noir</h3>
+          <p class="carte__desc">Le classique du soir, celui qui va à tout.</p>
+          <p class="carte__prix">20&nbsp;€</p>
+          <a class="bouton bouton--fin" href="#commander" data-coloris="Noir">Choisir le noir</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="matiere" id="matiere">
+    <figure class="matiere__image">
+      <img src="assets/img/cape-ivoire.webp" alt="Détail de la fourrure sur la cape ivoire" loading="lazy" width="1296" height="1728">
+    </figure>
+    <div class="matiere__texte">
+      <p class="surtitre">La pièce</p>
+      <h2>Ce que vous recevez</h2>
+      <dl class="fiche">
+        <div><dt>Matière</dt><dd>Maille douce, bordure en fourrure synthétique dense</dd></div>
+        <div><dt>Taille</dt><dd>Unique, coupe ample — convient du 34 au 44</dd></div>
+        <div><dt>Longueur</dt><dd>Mi-cuisse, manches évasées</dd></div>
+        <div><dt>Entretien</dt><dd>Nettoyage à sec, ne pas essorer</dd></div>
+        <div><dt>Prix</dt><dd>20&nbsp;€, livraison comprise</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="commander" id="commander">
+    <div class="section-tete">
+      <p class="surtitre">Votre commande</p>
+      <h2>Commander la cape</h2>
+      <p class="chapo chapo--centre">Remplissez ce formulaire, il prépare l'e-mail de commande. Je vous réponds avec le lien de paiement et le suivi.</p>
+    </div>
+
+    <form class="formulaire" id="formulaire">
+      <fieldset class="champs-coloris">
+        <legend>Coloris</legend>
+        <div class="pastilles">
+          <label class="pastille"><input type="radio" name="coloris" value="Moka" checked><span class="puce puce--moka"></span><span class="pastille__nom">Moka</span></label>
+          <label class="pastille"><input type="radio" name="coloris" value="Ivoire"><span class="puce puce--ivoire"></span><span class="pastille__nom">Ivoire</span></label>
+          <label class="pastille"><input type="radio" name="coloris" value="Noir"><span class="puce puce--noir"></span><span class="pastille__nom">Noir</span></label>
+        </div>
+      </fieldset>
+
+      <div class="champ champ--court">
+        <label for="quantite">Quantité</label>
+        <input type="number" id="quantite" name="quantite" min="1" max="10" value="1" inputmode="numeric">
+      </div>
+
+      <div class="champ">
+        <label for="nom">Nom et prénom</label>
+        <input type="text" id="nom" name="nom" autocomplete="name" required>
+      </div>
+
+      <div class="champ">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </div>
+
+      <div class="champ">
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" name="telephone" autocomplete="tel">
+      </div>
+
+      <div class="champ champ--large">
+        <label for="adresse">Adresse de livraison</label>
+        <textarea id="adresse" name="adresse" rows="3" autocomplete="street-address" required></textarea>
+      </div>
+
+      <div class="champ champ--large">
+        <label for="message">Message <span class="option">(facultatif)</span></label>
+        <textarea id="message" name="message" rows="2"></textarea>
+      </div>
+
+      <div class="total">
+        <p class="total__ligne"><span>Sous-total</span><span id="sous-total">20,00&nbsp;€</span></p>
+        <p class="total__ligne"><span>Livraison</span><span class="offert">Offerte</span></p>
+        <p class="total__ligne total__ligne--fort"><span>Total</span><span id="total">20,00&nbsp;€</span></p>
+      </div>
+
+      <button class="bouton bouton--plein" type="submit">Envoyer ma commande</button>
+      <p class="mention">Si votre messagerie ne s'ouvre pas, le récapitulatif s'affiche ci-dessous : copiez-le et envoyez-le à <a href="mailto:contact@maison-ivoire.fr">contact@maison-ivoire.fr</a>.</p>
+      <div class="recap" id="recap" hidden>
+        <label for="recap-texte">Récapitulatif à copier</label>
+        <textarea id="recap-texte" rows="10" readonly></textarea>
+      </div>
+    </form>
+  </section>
+
+  <section class="garanties">
+    <ul>
+      <li><strong>Livraison offerte</strong>Sur toutes les commandes, sans minimum.</li>
+      <li><strong>Expédition 48&nbsp;h</strong>Départ sous deux jours ouvrés après paiement.</li>
+      <li><strong>Retour 14&nbsp;jours</strong>La pièce reprise si elle ne vous va pas.</li>
+    </ul>
+  </section>
+
+  <section class="questions">
+    <div class="section-tete">
+      <p class="surtitre">Questions</p>
+      <h2>Avant de commander</h2>
+    </div>
+    <div class="faq">
+      <details><summary>La taille unique me conviendra-t-elle&nbsp;?</summary><p>La coupe est ample et fermée par un pan croisé : elle tombe bien du 34 au 44. Au-delà, écrivez-moi avant de commander.</p></details>
+      <details><summary>La fourrure est-elle véritable&nbsp;?</summary><p>Non. La bordure est en fourrure synthétique, choisie pour sa densité et sa tenue dans le temps.</p></details>
+      <details><summary>Combien de temps pour la recevoir&nbsp;?</summary><p>Expédition sous 48&nbsp;h après paiement, puis 2 à 4 jours ouvrés de livraison.</p></details>
+      <details><summary>Comment se passe le paiement&nbsp;?</summary><p>Vous recevez un lien de paiement sécurisé par e-mail dès la commande confirmée.</p></details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <p class="marque marque--pied">Maison&nbsp;Ivoire</p>
+  <p>La cape d'hiver — 20&nbsp;€, livraison offerte.</p>
+  <p><a href="mailto:contact@maison-ivoire.fr">contact@maison-ivoire.fr</a></p>
+</footer>
+
+<div class="barre-mobile">
+  <span class="barre-mobile__prix">20&nbsp;€ <em>livraison offerte</em></span>
+  <a class="bouton bouton--plein bouton--fin" href="#commander">Commander</a>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
