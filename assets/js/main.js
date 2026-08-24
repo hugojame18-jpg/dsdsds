@@ -1,4 +1,6 @@
-/* Maison Ivoire — interactions */
+/* Maison Ivoire — interactions
+   Chaque formulaire de commande est autonome : la page d'accueil et les
+   fiches produit partagent le même script. */
 (function () {
   "use strict";
 
@@ -7,36 +9,10 @@
 
   var euros = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
-  var form = document.getElementById("formulaire");
-  var quantite = document.getElementById("quantite");
-  var sousTotal = document.getElementById("sous-total");
-  var total = document.getElementById("total");
-  var recap = document.getElementById("recap");
-  var recapTexte = document.getElementById("recap-texte");
-
-  function nombre() {
-    var n = parseInt(quantite.value, 10);
-    if (isNaN(n) || n < 1) { n = 1; }
-    if (n > 10) { n = 10; }
-    return n;
+  function valeur(form, nom) {
+    var champ = form.elements[nom];
+    return champ ? champ.value.trim() : "";
   }
-
-  function majTotal() {
-    var montant = euros.format(nombre() * PRIX);
-    sousTotal.textContent = montant;
-    total.textContent = montant;
-  }
-
-  quantite.addEventListener("input", majTotal);
-  majTotal();
-
-  /* Le bouton d'un coloris présélectionne la bonne pastille du formulaire. */
-  Array.prototype.forEach.call(document.querySelectorAll("[data-coloris]"), function (lien) {
-    lien.addEventListener("click", function () {
-      var choix = document.querySelector('input[name="coloris"][value="' + lien.dataset.coloris + '"]');
-      if (choix) { choix.checked = true; }
-    });
-  });
 
   function resume(donnees) {
     return [
@@ -57,31 +33,55 @@
     ].join("\n");
   }
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
+  function activer(form) {
+    var quantite = form.elements.quantite;
+    var sousTotal = form.querySelector('[data-role="sous-total"]');
+    var total = form.querySelector('[data-role="total"]');
+    var recap = form.querySelector('[data-role="recap"]');
+    var recapTexte = form.querySelector('[data-role="recap-texte"]');
 
-    var donnees = {
-      coloris: form.elements.coloris.value,
-      quantite: nombre(),
-      nom: form.elements.nom.value.trim(),
-      email: form.elements.email.value.trim(),
-      telephone: form.elements.telephone.value.trim(),
-      adresse: form.elements.adresse.value.trim(),
-      message: form.elements.message.value.trim()
-    };
+    function nombre() {
+      var n = parseInt(quantite.value, 10);
+      if (isNaN(n) || n < 1) { return 1; }
+      return n > 10 ? 10 : n;
+    }
 
-    var texte = resume(donnees);
-    recapTexte.value = texte;
-    recap.hidden = false;
+    function majTotal() {
+      var montant = euros.format(nombre() * PRIX);
+      sousTotal.textContent = montant;
+      total.textContent = montant;
+    }
 
-    var sujet = "Commande — cape " + donnees.coloris + " ×" + donnees.quantite;
-    window.location.href = "mailto:" + EMAIL +
-      "?subject=" + encodeURIComponent(sujet) +
-      "&body=" + encodeURIComponent(texte);
-  });
+    quantite.addEventListener("input", majTotal);
+    majTotal();
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var donnees = {
+        coloris: form.elements.coloris.value,
+        quantite: nombre(),
+        nom: valeur(form, "nom"),
+        email: valeur(form, "email"),
+        telephone: valeur(form, "telephone"),
+        adresse: valeur(form, "adresse"),
+        message: valeur(form, "message")
+      };
+
+      var texte = resume(donnees);
+      recapTexte.value = texte;
+      recap.hidden = false;
+
+      var sujet = "Commande — cape " + donnees.coloris + " ×" + donnees.quantite;
+      window.location.href = "mailto:" + EMAIL +
+        "?subject=" + encodeURIComponent(sujet) +
+        "&body=" + encodeURIComponent(texte);
+    });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".formulaire"), activer);
 
   /* Révélation douce des sections au défilement. */
-  var cibles = document.querySelectorAll(".section-tete, .carte, .matiere__texte, .matiere__image, .garanties li, .formulaire");
   if ("IntersectionObserver" in window) {
     var observateur = new IntersectionObserver(function (entrees) {
       entrees.forEach(function (entree) {
@@ -92,6 +92,9 @@
       });
     }, { rootMargin: "0px 0px -10% 0px" });
 
+    var cibles = document.querySelectorAll(
+      ".section-tete, .carte, .matiere__texte, .matiere__image, .garanties li, .produit__infos"
+    );
     Array.prototype.forEach.call(cibles, function (cible) {
       cible.classList.add("reveler");
       observateur.observe(cible);

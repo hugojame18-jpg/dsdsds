@@ -1,8 +1,9 @@
 # Maison Ivoire — boutique en ligne
 
-Site vitrine d'une seule pièce : la cape d'hiver bordée de fourrure, trois coloris, **20 €**, livraison offerte.
+Boutique de la cape d'hiver bordée de fourrure : une page d'accueil et une fiche produit
+par coloris — moka, ivoire, noir. **20 €**, livraison offerte.
 
-Site statique, sans dépendance ni étape de build. Un `index.html`, une feuille de style, un script.
+Site statique, sans dépendance ni étape de build. Palette blanche et beige, sans version sombre.
 
 ## Ouvrir le site
 
@@ -16,21 +17,29 @@ python3 -m http.server 8000
 ## Structure
 
 ```
-index.html              la page complète
+index.html              accueil : hero, les trois coloris, la pièce, commande, FAQ
+cape-moka.html          fiche produit — moka
+cape-ivoire.html        fiche produit — ivoire
+cape-noir.html          fiche produit — noir
 assets/css/style.css    palette, typographie, mise en page
-assets/js/main.js       total, présélection du coloris, envoi de la commande
+assets/js/main.js       total et envoi de la commande, pour chaque formulaire
 assets/img/             les trois photos produit
-build_artifact.py       génère boutique-en-un-fichier.html (tout inliné)
+build_artifact.py       génère boutique-en-un-fichier.html (tout le site inliné)
 ```
+
+Les quatre pages partagent la même feuille de style et le même script. Une fiche produit
+reprend la photo du coloris, le prix, la description, le formulaire de commande
+pré-réglé sur le bon coloris, trois volets dépliants (composition, taille, livraison)
+et un renvoi vers les deux autres coloris.
 
 ## À personnaliser avant la mise en ligne
 
 | Quoi | Où |
 | --- | --- |
-| Nom de la marque (« Maison Ivoire ») | `index.html` (`.marque`, `<title>`, pied de page) |
-| Adresse e-mail de commande | `assets/js/main.js` (constante `EMAIL`) et `index.html` (liens `mailto:`) |
-| Prix | `assets/js/main.js` (constante `PRIX`) et les mentions « 20 € » dans `index.html` |
-| Délais d'expédition et retours | section `.garanties` et la FAQ dans `index.html` |
+| Nom de la marque (« Maison Ivoire ») | les quatre pages (`.marque`, `<title>`, pied de page) |
+| Adresse e-mail de commande | `assets/js/main.js` (constante `EMAIL`) et les liens `mailto:` des quatre pages |
+| Prix | `assets/js/main.js` (constante `PRIX`) et les mentions « 20 € » dans les quatre pages |
+| Délais d'expédition et retours | `.garanties` et la FAQ dans `index.html`, volet « Livraison et retours » des fiches |
 
 Les délais annoncés (expédition sous 48 h, retour sous 14 jours) sont des valeurs de départ :
 vérifiez qu'elles correspondent à ce que vous pratiquez avant de publier.
