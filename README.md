@@ -22,6 +22,7 @@ cape-moka.html          fiche produit — moka
 cape-ivoire.html        fiche produit — crème
 cape-noir.html          fiche produit — noir
 assets/css/style.css    palette, typographie, mise en page
+assets/video/           les vidéos de l'ouverture
 assets/js/main.js       total et envoi de la commande, pour chaque formulaire
 assets/img/             les trois photos produit
 build_artifact.py       génère boutique-en-un-fichier.html (tout le site inliné)
@@ -29,8 +30,12 @@ build_artifact.py       génère boutique-en-un-fichier.html (tout le site inlin
 
 Les quatre pages partagent la même feuille de style et le même script.
 
-L'accueil est une vitrine : une grille de vignettes (photo, nom, prix), puis la
-présentation de la pièce, les garanties et l'aide.
+L'accueil s'ouvre sur deux vidéos verticales encadrant le nom de la pièce et son prix
+(lecture automatique, sans son, en boucle), puis une grille de vignettes (photo, nom,
+prix), la présentation de la pièce, les garanties et l'aide.
+
+Quand le nombre d'articles laisse une case vide en bas de la grille sur téléphone, la
+dernière vignette occupe toute la largeur — pas de trou.
 
 Une fiche produit reprend la photo, le prix, le sélecteur de coloris, le formulaire de
 commande pré-réglé, puis le descriptif : texte de présentation, indice de chaleur,
@@ -57,10 +62,25 @@ Elles sont écrites en clair dans les fiches, à un seul endroit par page :
 | Nom de la marque (« Maison Ivoire ») | les quatre pages (`.marque`, `<title>`, pied de page) |
 | Adresse e-mail de commande | `assets/js/main.js` (constante `EMAIL`) et les liens `mailto:` des quatre pages |
 | Prix | `assets/js/main.js` (constante `PRIX`) et les mentions « 20 € » dans les quatre pages |
+| Fin de l'offre de livraison | `assets/js/main.js` (constante `FIN_OFFRE`) |
 | Délais d'expédition et retours | `.garanties` et la FAQ dans `index.html`, volet « Livraison et retours » des fiches |
 
 Les délais annoncés (expédition sous 48 h, retour sous 14 jours) sont des valeurs de départ :
 vérifiez qu'elles correspondent à ce que vous pratiquez avant de publier.
+
+## L'offre de livraison offerte
+
+Le bandeau du haut affiche « Livraison offerte pendant une semaine » suivi du temps
+restant, calculé à partir de `FIN_OFFRE` dans `assets/js/main.js` :
+
+```js
+var FIN_OFFRE = new Date("2026-08-31T23:59:59+02:00");
+```
+
+Une fois la date passée, le bandeau bascule tout seul sur « Livraison offerte sur toutes
+les commandes » et le décompte disparaît. **Mettez cette date à jour à chaque nouvelle
+opération** : un décompte qui se remet à zéro tout seul est une pratique commerciale
+trompeuse.
 
 ## Commandes
 

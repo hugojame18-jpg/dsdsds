@@ -7,6 +7,11 @@
   var PRIX = 20;
   var EMAIL = "contact@maison-ivoire.fr";
 
+  /* Fin de l'offre de livraison offerte. Passée cette date, le bandeau
+     annonce simplement la livraison offerte, sans compte à rebours.
+     À mettre à jour à chaque nouvelle opération. */
+  var FIN_OFFRE = new Date("2026-08-31T23:59:59+02:00");
+
   var euros = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
   function valeur(form, nom) {
@@ -80,6 +85,41 @@
   }
 
   Array.prototype.forEach.call(document.querySelectorAll(".formulaire"), activer);
+
+  /* Bandeau : temps restant sur l'offre de livraison. */
+  function chaque(selecteur, action) {
+    Array.prototype.forEach.call(document.querySelectorAll(selecteur), action);
+  }
+
+  function majOffre() {
+    var reste = FIN_OFFRE.getTime() - Date.now();
+
+    if (reste <= 0) {
+      chaque('[data-role="offre"]', function (el) {
+        el.textContent = "Livraison offerte sur toutes les commandes";
+      });
+      chaque('[data-role="compte"]', function (el) { el.textContent = ""; });
+      return;
+    }
+
+    var jours = Math.floor(reste / 86400000);
+    var heures = Math.floor((reste % 86400000) / 3600000);
+    var minutes = Math.floor((reste % 3600000) / 60000);
+
+    var texte;
+    if (jours >= 1) {
+      texte = "plus que " + jours + " j " + heures + " h";
+    } else if (heures >= 1) {
+      texte = "plus que " + heures + " h " + minutes + " min";
+    } else {
+      texte = "plus que " + minutes + " min";
+    }
+
+    chaque('[data-role="compte"]', function (el) { el.textContent = texte; });
+  }
+
+  majOffre();
+  window.setInterval(majOffre, 60000);
 
   /* Révélation douce des sections au défilement. */
   if ("IntersectionObserver" in window) {

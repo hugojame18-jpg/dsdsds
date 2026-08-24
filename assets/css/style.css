@@ -479,3 +479,71 @@ p { margin: 0; }
 
 /* navigation en un seul fichier (voir build_artifact.py) */
 .page[hidden] { display: none; }
+
+/* ---------- bandeau : compte à rebours ---------- */
+
+.bandeau__compte {
+  color: var(--moka);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+.bandeau__compte:not(:empty)::before { content: "· "; color: var(--greige); }
+
+/* ---------- ouverture en vidéo ---------- */
+
+.ouverture {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--filet);
+  border-bottom: 1px solid var(--filet);
+}
+
+.ouverture__film { order: 1; background: var(--fond-alt); overflow: hidden; }
+.ouverture__film video {
+  display: block;
+  width: 100%;
+  height: min(56vh, 500px);
+  object-fit: cover;
+}
+
+.ouverture__mot {
+  order: 2;
+  grid-column: 1 / -1;
+  background: var(--fond);
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  padding: clamp(2rem, 6vw, 3.5rem) var(--marge);
+}
+.ouverture__phrase {
+  font-family: var(--display);
+  font-size: clamp(2.1rem, 5.5vw, 3.2rem);
+  line-height: 1.1;
+  text-wrap: balance;
+  max-width: 14ch;
+}
+.ouverture__prix { font-family: var(--display); font-size: 1.7rem; color: var(--texte-doux); }
+
+@media (min-width: 900px) {
+  .ouverture { grid-template-columns: 1fr minmax(19rem, 24rem) 1fr; }
+  .ouverture__mot { grid-column: auto; padding-block: clamp(3rem, 6vw, 5rem); }
+  .ouverture__film--second { order: 3; }
+  .ouverture__film video { height: min(78vh, 660px); }
+}
+
+/* ---------- vitrine : la dernière vignette comble la ligne ---------- */
+
+@media (max-width: 899px) {
+  .vitrine > .produit-vignette:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .vitrine > .produit-vignette:last-child:nth-child(odd) img { aspect-ratio: 4 / 5; }
+  .vitrine > .produit-vignette:last-child:nth-child(odd) h2,
+  .vitrine > .produit-vignette:last-child:nth-child(odd) h3,
+  .vitrine > .produit-vignette:last-child:nth-child(odd) .produit-vignette__prix {
+    padding-inline: clamp(0.9rem, 4vw, 2rem);
+  }
+}

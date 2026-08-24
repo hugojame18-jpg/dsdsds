@@ -11,7 +11,8 @@ import pathlib
 import re
 
 RACINE = pathlib.Path(__file__).parent
-TYPES = {".webp": "image/webp", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png"}
+TYPES = {".webp": "image/webp", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+         ".mp4": "video/mp4"}
 
 PAGES = [
     ("accueil", "index.html"),
@@ -97,6 +98,13 @@ def construire() -> str:
         if image.suffix.lower() in TYPES:
             banque[image.name] = data_uri(image)
             document = document.replace(f'src="assets/img/{image.name}"', f'data-image="{image.name}"')
+
+    # Les vidéos n'apparaissent qu'une fois : elles vont directement dans le src.
+    dossier_video = RACINE / "assets/video"
+    if dossier_video.is_dir():
+        for video in sorted(dossier_video.iterdir()):
+            if video.suffix.lower() in TYPES:
+                document = document.replace(f"assets/video/{video.name}", data_uri(video))
 
     entrees = ",\n".join(f'  "{nom}": "{uri}"' for nom, uri in banque.items())
     document = document.replace(
