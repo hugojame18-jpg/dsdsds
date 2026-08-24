@@ -20,11 +20,6 @@ PAGES = [
     ("noir", "cape-noir.html"),
 ]
 
-STYLE_PAGES = """
-/* navigation en un seul fichier */
-.page[hidden] { display: none; }
-"""
-
 ROUTEUR = """
 /* Navigation entre les pages du fichier unique. */
 (function () {
@@ -76,7 +71,7 @@ def construire() -> str:
     tete = re.search(r"<head>(.*?)</head>", index, re.S).group(1)
     tete = re.sub(r'\s*<link rel="stylesheet" href="assets/css/style\.css">', "", tete)
 
-    css = (RACINE / "assets/css/style.css").read_text(encoding="utf-8") + STYLE_PAGES
+    css = (RACINE / "assets/css/style.css").read_text(encoding="utf-8")
     js = (RACINE / "assets/js/main.js").read_text(encoding="utf-8")
 
     blocs = []

@@ -93,7 +93,7 @@
     }, { rootMargin: "0px 0px -10% 0px" });
 
     var cibles = document.querySelectorAll(
-      ".section-tete, .carte, .matiere__texte, .matiere__image, .garanties li, .produit__infos"
+      ".section-tete, .produit-vignette, .la-piece__texte, .la-piece__image, .garanties li, .produit__infos"
     );
     Array.prototype.forEach.call(cibles, function (cible) {
       cible.classList.add("reveler");

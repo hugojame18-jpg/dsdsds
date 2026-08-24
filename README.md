@@ -1,7 +1,7 @@
 # Maison Ivoire — boutique en ligne
 
-Boutique de la cape d'hiver bordée de fourrure : une page d'accueil et une fiche produit
-par coloris — moka, ivoire, noir. **20 €**, livraison offerte.
+Boutique de capes en fausse fourrure : une grille de coloris en page d'accueil et une
+fiche produit par coloris — moka, crème, noir. **20,00 €**, livraison offerte.
 
 Site statique, sans dépendance ni étape de build. Palette blanche et beige, sans version sombre.
 
@@ -19,7 +19,7 @@ python3 -m http.server 8000
 ```
 index.html              accueil : hero, les trois coloris, la pièce, commande, FAQ
 cape-moka.html          fiche produit — moka
-cape-ivoire.html        fiche produit — ivoire
+cape-ivoire.html        fiche produit — crème
 cape-noir.html          fiche produit — noir
 assets/css/style.css    palette, typographie, mise en page
 assets/js/main.js       total et envoi de la commande, pour chaque formulaire
@@ -27,10 +27,28 @@ assets/img/             les trois photos produit
 build_artifact.py       génère boutique-en-un-fichier.html (tout le site inliné)
 ```
 
-Les quatre pages partagent la même feuille de style et le même script. Une fiche produit
-reprend la photo du coloris, le prix, la description, le formulaire de commande
-pré-réglé sur le bon coloris, trois volets dépliants (composition, taille, livraison)
-et un renvoi vers les deux autres coloris.
+Les quatre pages partagent la même feuille de style et le même script.
+
+L'accueil est une vitrine : une grille de vignettes (photo, nom, prix), puis la
+présentation de la pièce, les garanties et l'aide.
+
+Une fiche produit reprend la photo, le prix, le sélecteur de coloris, le formulaire de
+commande pré-réglé, puis le descriptif : texte de présentation, indice de chaleur,
+mensurations du mannequin, matière, tailles, longueurs et volet livraison.
+
+### Caractéristiques du produit
+
+Elles sont écrites en clair dans les fiches, à un seul endroit par page :
+
+| | |
+| --- | --- |
+| Matière | 100 % polyester |
+| Taille | Unique, convient du 34 au 44 |
+| Longueur | 78 cm devant, 83 cm dos |
+| Fermeture | Agrafe et œillet sur le devant |
+| Coupe | Manches chauve-souris |
+| Indice de chaleur | 2/5 — mi-saison |
+| Mannequin | 1,65 m, taille 34/36, porte la taille unique |
 
 ## À personnaliser avant la mise en ligne
 
