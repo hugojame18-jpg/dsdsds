@@ -11,9 +11,9 @@
      C'est la page de paiement qui recueille les coordonnées et l'adresse.
      Tant qu'un lien est vide, le bouton prépare un e-mail de commande. */
   var PAIEMENT = {
-    "Moka": "",
-    "Crème": "",
-    "Noir": ""
+    "Moka": "https://t.trklinkx.com/click?pid=4784&offer_id=13057",
+    "Crème": "https://t.trklinkx.com/click?pid=4784&offer_id=13057",
+    "Noir": "https://t.trklinkx.com/click?pid=4784&offer_id=13057"
   };
 
   /* Fin de l'offre de livraison offerte. Passée cette date, le bandeau
